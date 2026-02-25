@@ -1,0 +1,31 @@
+Neues Projekt anlegen in IntelliJ
+=================================
+File	==>	New Project...
+		    Java
+	    ==>	Name:			app
+		    Location:		~\Daten\Java\Projects
+            Create Git repository:	Check
+            Build system:		    JDK 21
+            Add sample code:	    Uncheck
+            ----------------------------------------------
+            Advanced Settings
+            Module Name:		    app
+            Content root:		    ~\Daten\Java\Projects\app
+            Module file location:	~\Daten\Java\Projects\app
+
+
+ src	==>	New Package
+            Name:			de.domain.app.control
+        ==>	New Java Class
+            Name:			Main
+
+Run	    ==>	Edit Configurations...
+		    Run/Debug Configurations
+		    Add new run configuration...
+		    Application
+		    Name:			app Application
+		    Main Class:		Main
+
+Run	    ==>	Run application (Shift + F10)
+
+

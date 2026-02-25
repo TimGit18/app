@@ -1,0 +1,67 @@
+External Libraries
+==================
+File	==>	Project Structure...
+		-------------------------
+		Project Settings
+		Libraries:		+
+		New Project Library
+		Java
+		---------------------
+		log4j-api-2.25.3.jar
+		log4j-core-2.25.3.jar
+
+Code
+====
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+public static void main(String[] args) {
+    ...
+    // Parameter, um den Workflow zu steuern
+    Logger LOG = LogManager.getLogger(Main.class.getName());
+    if (LOG.isTraceEnabled()) {
+        LOG.trace("LogPath: " + logPath);
+    }
+    ...
+ }
+
+ Output:
+ 22:47:30:408 TRACE de.domain.app.control.Main - LogPath: C:\Users\schmi\Daten\Java\Applications\app\logs
+
+ Kofigurationsdatei log4j2.xml im Verzeichnis properties
+ =======================================================
+ <?xml version="1.0" encoding="UTF-8"?>
+ <Configuration status="WARN">
+
+     <!-- ++++++++++++++++++++++++++++++++++++++++++++++++ -->
+     <!-- Definition of the appenders Console and Log File -->
+     <!-- ++++++++++++++++++++++++++++++++++++++++++++++++ -->
+     <Appenders>
+         <Console name="Console" target="SYSTEM_OUT">
+             <PatternLayout pattern="%d{HH:mm:ss:SSS} %-5level %logger{36} - %msg%n"/>
+         </Console>
+         <File name="File"
+               fileName="${sys:log.path}/output_${date:yyyy}_${date:MM}_${date:dd}_${date:HH}_${date:mm}_${date:ss}_${date:SSS}.log"
+               bufferedIO="true">
+             <PatternLayout pattern="%d{HH:mm:ss:SSS} %-5level %logger{36} - %msg%n"/>
+         </File>
+     </Appenders>
+
+     <!-- +++++++++++++++++++++++++ -->
+     <!-- Definition of the Loggers -->
+     <!-- +++++++++++++++++++++++++ -->
+     <Loggers>
+         <Root level="trace">
+             <AppenderRef ref="File"/>
+             <AppenderRef ref="Console"/>
+         </Root>
+     </Loggers>
+
+ </Configuration>
+
+ Konfigurationsdatei dem Java Build Path hinzufügen
+ ==================================================
+ properties ==> Rechtsklick
+            ==> Mark Directory As:  Resources Root
+
+

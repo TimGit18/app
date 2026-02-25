@@ -1,0 +1,51 @@
+Prpoerties app.properties im Ordner properties definieren
+=========================================================
+# Rechnernamen
+meta.pc=22H0566
+privat.pc=DESKTOP-3NCAR95
+schmi.pc=DESKTOP-Q6O0UGB
+test.pc=DESKTOP-LERLCJ6
+
+# Logging Pfade
+logpath.meta=C:\\Users\\TSZ\\Daten\\Java\\Applications\\app\\logs
+logpath.privat = C:\\Users\\Privat\\Daten\\Java\\Applications\\app\\logs
+logpath.schmi=C:\\Users\\schmi\\Daten\\Java\\Applications\\app\\logs
+logpath.test=C:\\Users\\test\\Daten\\Java\\Applications\\app\\logs
+
+# Sonstiges
+error.host=Kein Computername definiert
+
+Property-Klasse
+===============
+public static void setProperties() {
+    // Statische Variablen für den Zugriff auf die Properties
+    String directory = System.getProperty("user.dir") + File.separator + "properties";
+    file = new File(directory, "app.properties");
+    properties = new Properties();
+    setKeys();
+}
+
+private static void setKeys() {
+    // Keys für die PC-Namen
+    schmiPC = "schmi.pc";
+    ...
+    // Keys für die Logging-Pfade
+    logPathSchmi = "logpath.schmi";
+    ...
+}
+
+public static void load() {
+    try {
+        FileInputStream inputStream = new FileInputStream(file);
+        properties.load(inputStream);
+    } catch (IOException ignored) {  }
+}
+
+// Getter
+public static String getSchmiPC() {
+    return properties.getProperty(schmiPC);
+}
+
+public static String getLogPathSchmi() {
+    return properties.getProperty(logPathSchmi);
+}

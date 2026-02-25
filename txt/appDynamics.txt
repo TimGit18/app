@@ -1,0 +1,35 @@
+Code von Main.java
+==================
+import java.io.IOException;
+import java.net.InetAddress;
+
+Rechnernamen ermitteln
+======================
+public static String getHostName() {
+    String hostName = "";
+    // Den Rechnernamen aus der Umgebung holen
+    try {
+        hostName = InetAddress.getLocalHost().getHostName();
+    } catch (IOException ioException) {
+        System.err.println(ioException.getMessage());
+    }
+    return hostName;
+}
+
+Log-Path setzen (abhängig vom Rechnernamen)
+===========================================
+public static String setLogPath(String computerName) {
+    String logPath = "";
+    ....
+    if (SCHMI_PC.equals(computerName)) {
+        logPath = LOG_PATH_SCHMI_PC;
+    }
+    ...
+    } else {
+        System.err.println(ERROR_HOST);
+    }
+
+    // Setzen des System Logging-Pfades
+    System.setProperty("log.path", logPath);
+    return logPath;
+}

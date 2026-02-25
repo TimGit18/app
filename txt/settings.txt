@@ -1,0 +1,7 @@
+Deaktivieren der Rechstschreibprüfung
+=====================================
+File    ==> Settings
+        ==> Editor
+        ==> Inspections
+        ==> Proofreading
+        ==> Typo
