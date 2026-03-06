@@ -27,6 +27,8 @@ public class Main {
 
         // Setzen der System-Properties
         String computerName = getHostName();
+        System.out.println("Computer Name: " + computerName);
+
         String logPath = setLogPath(computerName);
 
         // Parameter, um den Workflow zu steuern

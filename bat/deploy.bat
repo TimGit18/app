@@ -13,6 +13,23 @@ rem ============
 
     exit /b
 
+rem =========
+rem App-Pfade
+rem =========
+:set_app_paths
+    set "apps_root=C:\Users\schmi\Daten\Java\Applications"
+    set "apps_dir=%apps_root%\app"
+    set "build_dir=%apps_dir%\build"
+    set "logs_dir=%apps_dir%\logs"
+
+    echo set_app_paths...
+    echo %apps_root%
+    echo %apps_dir%
+    echo %build_dir%
+    echo %logs_dir%
+
+    exit /b
+
 
 
 rem ------------------------------------------------------------

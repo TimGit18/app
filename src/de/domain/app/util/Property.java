@@ -2,6 +2,7 @@ package de.domain.app.util;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -59,12 +60,16 @@ public class Property {
         try {
             FileInputStream inputStream = new FileInputStream(file);
             properties.load(inputStream);
-        } catch (IOException ignored) {
+        } catch (FileNotFoundException fileNotFoundException) {
+            System.err.println(file.toString() + " not found");
+        }
+        catch (IOException ignored) {
         }
     }
 
     // Getter für die PCs
     public static String getMetaPC() {
+        System.out.println("Meta PC: " + properties.getProperty("meta.pc"));
         return properties.getProperty(metaPC);
     }
 

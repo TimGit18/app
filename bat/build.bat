@@ -11,7 +11,6 @@ rem Hauptroutine
 rem ============
 :main
     call :set_project_paths
-    call :set_app_paths
     call :set_date_settings
     call :set_cleanup_build
     call :set_source_code_paths
@@ -27,25 +26,12 @@ rem ============
 :set_project_paths
     set "projects_root=C:\Users\schmi\Daten\Java\Projects"
     set "app_dir=%projects_root%\app"
+    set "build_dir=%app_dir%\build"
+    set "logs_dir=%app_dir%\logs"
 
     echo set_project_paths...
     echo %projects_root%
     echo %app_dir%
-
-    exit /b
-
-rem =========
-rem App-Pfade
-rem =========
-:set_app_paths
-    set "apps_root=C:\Users\schmi\Daten\Java\Applications"
-    set "apps_dir=%apps_root%\app"
-    set "build_dir=%apps_dir%\build"
-    set "logs_dir=%apps_dir%\logs"
-
-    echo set_app_paths...
-    echo %apps_root%
-    echo %apps_dir%
     echo %build_dir%
     echo %logs_dir%
 

@@ -10,23 +10,25 @@ rem ============
 rem Hauptroutine
 rem ============
 :main
-    call :set_app_paths
+    call :set_project_paths
     call :set_library_paths
     call :run_main_class
 exit /b
 
-rem =========
-rem App-Pfade
-rem =========
-:set_app_paths
-    set "apps_root=C:\Users\schmi\Daten\Java\Applications"
-    set "apps_dir=%apps_root%\app"
-    set "build_dir=%apps_dir%\build"
-    set "logs_dir=%apps_dir%\logs"
+rem ============
+rem Projektpfade
+rem ============
+:set_project_paths
+    set "project_root=C:\Users\schmi\Daten\Java\Projects"
+    set "app_dir=%project_root%\app"
+    set "properties_dir=%app_dir%\properties"
+    set "build_dir=%app_dir%\build"
+    set "logs_dir=%app_dir%\logs"
 
-    echo set_app_paths...
-    echo %apps_root%
-    echo %apps_dir%
+    echo set_project_paths...
+    echo %project_root%
+    echo %app_dir%
+    echo %properties_dir%
     echo %build_dir%
     echo %logs_dir%
 
@@ -54,5 +56,6 @@ rem Run Application
 rem ================
 :run_main_class
     echo run_main_class...
-    java -cp %build_dir%;%log4j_api_jar%;%log4j_core_jar% de.domain.app.control.Main
+    cd ..
+    java -cp %build_dir%;%properties_dir%;%log4j_api_jar%;%log4j_core_jar% de.domain.app.control.Main
     exit /b
