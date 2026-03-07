@@ -56,6 +56,6 @@ rem Run Application
 rem ================
 :run_main_class
     echo run_main_class...
-    cd ..
+    cd %app_dir%
     java -cp %build_dir%;%properties_dir%;%log4j_api_jar%;%log4j_core_jar% de.domain.app.control.Main
     exit /b

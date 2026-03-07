@@ -69,7 +69,6 @@ public class Property {
 
     // Getter für die PCs
     public static String getMetaPC() {
-        System.out.println("Meta PC: " + properties.getProperty("meta.pc"));
         return properties.getProperty(metaPC);
     }
 
@@ -90,9 +89,11 @@ public class Property {
         return properties.getProperty(logPathMeta);
     }
 
-    public static String getLogPathPrivat() { return properties.getProperty(logPathPrivat); }
+    public static String getLogPathPrivat() {
+        return properties.getProperty(logPathPrivat); }
 
-    public static String getLogPathSchmi() { return properties.getProperty(logPathSchmi); }
+    public static String getLogPathSchmi() {
+        return properties.getProperty(logPathSchmi); }
 
     public static String getLogPathTest() {
         return properties.getProperty(logPathTest);

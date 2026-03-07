@@ -4,7 +4,7 @@ rem ==============
 rem Programmablauf
 rem ==============
 call :main
-exit /b
+    exit /b
 
 rem ============
 rem Hauptroutine
