@@ -1,0 +1,48 @@
+Test-Packages anlegen
+=====================
+app ==> New Direcory:       test
+    ==> Rechte Maustaste:   Mark Directory As:  Test Sources Root
+
+External Libraries
+==================
+File	==>	Project Structure...
+		-------------------------
+		Project Settings
+		Libraries:		+
+		New Project Library
+		Java
+		---------------------
+        junit-jupiter-api-5.6.1.jar
+        junit-jupiter-engine-5.6.1.jar
+        junit-platform-commons-1.6.1.jar
+        junit-platform-engine-1.6.1.jar
+        junit-platform-launcher-1.3.2.jar
+        opentest4j-1.2.0.jar
+
+
+Testklasse  ==> Run Test (> oder STRG+SHIFT+F10)
+
+Commnand Line
+=============
+// Source - https://stackoverflow.com/a/7172646
+// Posted by lzap, modified by community. See post 'Timeline' for change history
+// Retrieved 2026-03-08, License - CC BY-SA 4.0
+
+java -jar junit-platform-console-standalone-<version>.jar <Options>
+
+// Source - https://stackoverflow.com/a/52373592
+// Posted by Sormuras, modified by community. See post 'Timeline' for change history
+// Retrieved 2026-03-08, License - CC BY-SA 4.0
+
+$ mkdir out
+$ javac -d out Student.java StudentSortSearch.java
+$ javac -d out -cp out:junit-platform-console-standalone-1.3.1.jar TestClass.java
+$ java -jar junit-platform-console-standalone-1.3.1.jar --class-path out --scan-class-path
+╷
+├─ JUnit Jupiter ✔
+│  └─ TestClass ✔
+│     └─ test() ✔
+└─ JUnit Vintage ✔
+
+Test run finished after 67 ms
+...
