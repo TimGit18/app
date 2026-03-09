@@ -16,8 +16,10 @@ rem ============
     call :set_source_code_paths
     call :set_library_paths
     call :create_logfile
-    call :compile_util      > %logfile% 2>&1
-    call :compile_control   > %logfile% 2>&1
+    call :compile_util          > %logfile% 2>&1
+    call :compile_control       > %logfile% 2>&1
+    call :compile_util_test     > %logfile% 2>&1
+
     exit /b
 
 rem ============
@@ -42,13 +44,18 @@ rem Quellcode-Pfade
 rem ===============
 :set_source_code_paths
     set "source_root=%app_dir%\src\de\domain\app"
+    set "test_root=%app_dir%\test\de\domain\app"
     set "control_dir=%source_root%\control"
     set "util_dir=%source_root%\util"
+    set "control_test_dir=%test_root%\control\test"
+    set "util_test_dir=%test_root%\util\test"
 
     echo set_source_code_paths...
     echo %source_root%
     echo %control_dir%
     echo %util_dir%
+    echo %control_test_dir%
+    echo %util_test_dir%
 
     exit /b
 
@@ -60,6 +67,9 @@ rem =============
     set "log4j_dir=%libs_root%\apache-log4j-2.25.3-bin"
     set "log4j_api_jar=%log4j_dir%\log4j-api-2.25.3.jar"
     set "log4j_core_jar=%log4j_dir%\log4j-core-2.25.3.jar"
+
+    set "junit5_dir=%libs_root%\junit-5"
+    set "junit_jupiter_api_jar=%junit5_dir%\junit-jupiter-api-5.6.1.jar"
 
     echo set_library_paths...
     echo %libs_root%
@@ -124,3 +134,14 @@ rem ===============
     echo compile_control...
     echo %control_dir%
     exit /b
+
+rem ============
+rem Compile Util
+rem ============
+:compile_util_test
+    javac -verbose -encoding utf8 %util_test_dir%\*java -d %build_dir% -cp %build_dir%;%junit_jupiter_api_jar%
+
+    echo compile_util...
+    echo %util_dir%
+    exit /b
+
