@@ -1,0 +1,104 @@
+Test-Packages anlegen
+=====================
+app ==> New Direcory:       test
+    ==> Rechte Maustaste:   Mark Directory As:  Test Sources Root
+
+External Libraries
+==================
+File	==>	Project Structure...
+		-------------------------
+		Project Settings
+		Libraries:		+
+		New Project Library
+		Java
+		---------------------
+        junit-jupiter-api-5.6.1.jar
+        junit-jupiter-engine-5.6.1.jar
+        junit-platform-commons-1.6.1.jar
+        junit-platform-engine-1.6.1.jar
+        junit-platform-launcher-1.3.2.jar
+        opentest4j-1.2.0.jar
+
+
+Testklasse  ==> Run Test (> oder STRG+SHIFT+F10)
+
+Commnand Line
+=============
+Tests von der Kommandozeile ausführen:
+
+1. JAR herunterladen:   Lade die Datei z. B. von JUnit 5 Releases herunter (Dateiname etwa):
+
+        junit-platform-console-standalone-1.10.x.jar
+
+Lege sie z. B. in dein Projektverzeichnis.
+
+2. Java-Tests kompilieren: Angenommen deine Struktur ist:
+
+        project/
+         ├─ src/
+         │   └─ TestExample.java
+         └─ junit-platform-console-standalone.jar
+
+Kompilieren:
+
+        javac -cp junit-platform-console-standalone.jar src/TestExample.java
+
+Wenn du mehrere Dateien hast:
+
+        javac -cp junit-platform-console-standalone.jar -d out src/*.java
+
+        -d out legt die .class Dateien im Ordner out ab.
+
+3. Tests ausführen:  Alle Tests in einem Ordner scannen
+
+        java -jar junit-platform-console-standalone.jar \
+                --class-path out \
+                --scan-class-path
+
+Das ist der häufigste Befehl.
+Eine bestimmte Testklasse starten
+
+        java -jar junit-platform-console-standalone.jar \
+                --class-path out \
+                --select-class TestExample
+
+Einzelne Methode testen
+
+        java -jar junit-platform-console-standalone.jar \
+                --class-path out \
+                --select-method TestExample#testAddition
+
+4. Beispiel Testklasse:
+
+        import org.junit.jupiter.api.Test;
+        import static org.junit.jupiter.api.Assertions.*;
+
+        class TestExample {
+
+            @Test
+            void testAddition() {
+                assertEquals(4, 2 + 2);
+            }
+        }
+
+5. Nützliche Optionen:
+
+        Option	                Bedeutung
+        ----------------------------------
+        --scan-class-path	    sucht automatisch nach Tests
+        --select-class	        eine bestimmte Klasse
+        --select-package	    alle Tests in einem Package
+        --details=tree	        schöne Baum-Ausgabe
+        --reports-dir=reports	Testreports erzeugen
+
+Beispiel mit schöner Ausgabe:
+
+        java -jar junit-platform-console-standalone.jar \
+              --class-path out \
+              --scan-class-path \
+              --details=tree
+
+Typischer Workflow
+
+javac -cp junit-platform-console-standalone.jar -d out src/*.java
+java -jar junit-platform-console-standalone.jar --class-path out --scan-class-path

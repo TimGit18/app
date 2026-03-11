@@ -17,8 +17,8 @@ rem ============
     call :set_library_paths
     call :create_logfile
     call :compile_util          > %logfile% 2>&1
-    call :compile_control       > %logfile% 2>&1
-    call :compile_util_test     > %logfile% 2>&1
+    call :compile_control       >> %logfile% 2>&1
+    call :compile_util_test     >> %logfile% 2>&1
 
     exit /b
 
@@ -67,15 +67,19 @@ rem =============
     set "log4j_dir=%libs_root%\apache-log4j-2.25.3-bin"
     set "log4j_api_jar=%log4j_dir%\log4j-api-2.25.3.jar"
     set "log4j_core_jar=%log4j_dir%\log4j-core-2.25.3.jar"
-
     set "junit5_dir=%libs_root%\junit-5"
     set "junit_jupiter_api_jar=%junit5_dir%\junit-jupiter-api-5.6.1.jar"
+    set "junit_console_standalone_api_jar=%junit5_dir%\junit-platform-console-standalone-1.7.0-all.jar"
 
     echo set_library_paths...
     echo %libs_root%
     echo %log4j_dir%
     echo %log4j_api_jar%
     echo %log4j_core_jar%
+    echo %junit5_dir%
+    echo %junit_jupiter_api_jar%
+    echo %junit_console_standalone_api_jar%
+
     exit /b
 
 rem =============
@@ -135,13 +139,14 @@ rem ===============
     echo %control_dir%
     exit /b
 
-rem ============
-rem Compile Util
-rem ============
+rem ==================
+rem Compile Util Test
+rem ==================
 :compile_util_test
-    javac -verbose -encoding utf8 %util_test_dir%\*java -d %build_dir% -cp %build_dir%;%junit_jupiter_api_jar%
+    javac -verbose -encoding utf8 %util_test_dir%\*java -d %build_dir% ^
+          -cp %build_dir%;%junit_jupiter_api_jar%;%junit_console_standalone_api_jar%
 
-    echo compile_util...
-    echo %util_dir%
+    echo compile_util_test...
+    echo %util_test_dir%
     exit /b
 
